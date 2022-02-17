@@ -53,6 +53,7 @@ namespace TextAdventureGame
             }
             if (p.HP > 0)
             {
+                Console.WriteLine($"You defeated the {e.Name}.");
                 var g = rng.Next(e.Gold);
                 Console.WriteLine($"{e.Name} Dropped {g} Gold.");
                 p.Gold += g;
