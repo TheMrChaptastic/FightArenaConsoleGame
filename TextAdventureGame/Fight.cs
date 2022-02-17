@@ -51,6 +51,7 @@ namespace TextAdventureGame
                 Thread.Sleep(200);
                 turn++;
             }
+            Console.WriteLine();
             if (p.HP > 0)
             {
                 Console.WriteLine($"You defeated the {e.Name}.");
