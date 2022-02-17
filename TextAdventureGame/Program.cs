@@ -6,10 +6,9 @@ namespace TextAdventureGame
     {
         static void Main(string[] args)
         {
+            Game.Welcome();
             var gameover = false;
-            
-            Console.WriteLine("What is your name?");
-            var username = Console.ReadLine();
+            var username = Game.GetUserName();
             Console.WriteLine();
             var player = ClassFactory.ChooseClass();
             Console.WriteLine();
@@ -43,14 +42,15 @@ namespace TextAdventureGame
                 }
                 if (player.HP <= 0)
                 {
-                    Console.WriteLine("You have died. Game Over.");
+                    Console.WriteLine("You have died in combat. Game Over.");
                     gameover = true;
                     break;
                 }
                 else if (uinput.ToLower() == "fight")
                 {
-                    Console.WriteLine("You have won a fight!");
                     fightsWon++;
+                    var winStr = fightsWon == 3 ? "You have finished your last fight. Your legend will live on forever." : "You have won your fight.";
+                    Console.WriteLine(winStr);
                     Console.WriteLine();
                 }
             }
