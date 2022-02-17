@@ -18,7 +18,6 @@ namespace TextAdventureGame
             var uinput = Console.ReadLine();
             while (!gameover)
             {
-                var goldEarned = 0;
                 if (fightsWon >= 3)
                 {
                     Console.WriteLine("You have succeeded! Congratulations!");
