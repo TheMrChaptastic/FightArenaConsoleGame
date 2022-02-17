@@ -40,11 +40,11 @@ namespace TextAdventureGame
                         Console.WriteLine("Invalid Input.");
                         break;
                 }
+
                 if (player.HP <= 0)
                 {
                     Console.WriteLine("You have died in combat. Game Over.");
                     gameover = true;
-                    break;
                 }
                 else if (uinput.ToLower() == "fight")
                 {
@@ -52,6 +52,20 @@ namespace TextAdventureGame
                     var winStr = fightsWon == 3 ? "You have finished your last fight. Your legend will live on forever." : "You have won your fight.";
                     Console.WriteLine(winStr);
                     Console.WriteLine();
+                }
+
+                if (gameover)
+                {
+                    Console.WriteLine("Play Again? y/n");
+                    uinput = Console.ReadLine();
+                    gameover = uinput.ToLower() == "y" ? false : true;
+                    if (!gameover)
+                    {
+                        Console.Clear();
+                        player = ClassFactory.ChooseClass();
+                        Console.WriteLine();
+                        fightsWon = 0;
+                    }
                 }
             }
         }

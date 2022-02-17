@@ -10,46 +10,28 @@ namespace TextAdventureGame
         public static void StartFight(IProfession p)
         {
             var e = EnemyFactory.RandomEnemy();
-            var turn = 1;
+            var tick = 1;
             var rng = new Random();
             var dmg = 0;
 
             while(e.HP > 0 && p.HP > 0)
             {
-                if (turn % 2 != 0)
+                if (tick % e.Speed == 0)
                 {
-                    if (p.Speed > e.Speed)
-                    {
-                        dmg = rng.Next(p.Attack);
-                        Console.WriteLine($"You attack the {e.Name} for {dmg} damage.");
-                        e.HP -= dmg;
-                    }
-                    else
-                    {
-                        dmg = rng.Next(e.Attack);
-                        p.HP -= dmg;
-                        if (p.HP < 0) { p.HP = 0; }
-                        Console.WriteLine($"The {e.Name} attacks you for {dmg} damage. HP Left: {p.HP}");
-                    }
+                    dmg = rng.Next(e.Attack);
+                    p.HP -= dmg;
+                    if (p.HP < 0) { p.HP = 0; }
+                    Console.WriteLine($"The {e.Name} attacks you for {dmg} damage. HP Left: {p.HP}");
+                    Thread.Sleep(200);
                 }
-                else
+                if (tick % p.Speed == 0)
                 {
-                    if (p.Speed > e.Speed)
-                    {
-                        dmg = rng.Next(e.Attack);
-                        p.HP -= dmg;
-                        if (p.HP < 0) { p.HP = 0; }
-                        Console.WriteLine($"The {e.Name} attacks you for {dmg} damage. HP Left: {p.HP }");
-                    }
-                    else
-                    {
-                        dmg = rng.Next(p.Attack);
-                        Console.WriteLine($"You attack the {e.Name} for {dmg} damage.");
-                        e.HP -= dmg;
-                    }
+                    dmg = rng.Next(p.Attack);
+                    Console.WriteLine($"You attack the {e.Name} for {dmg} damage.");
+                    e.HP -= dmg;
+                    Thread.Sleep(200);
                 }
-                Thread.Sleep(200);
-                turn++;
+                tick++;
             }
             Console.WriteLine();
             if (p.HP > 0)
