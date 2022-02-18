@@ -75,7 +75,6 @@ namespace TextAdventureGame
                 }
             }
             Console.WriteLine($"{player.Class} {username} Score: {player.HP + player.Gold * 3}");
-            HighScore.HighScoreCheck(player, username);
         }
     }
 }
