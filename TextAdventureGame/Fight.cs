@@ -7,9 +7,9 @@ namespace TextAdventureGame
 {
     public static class Fight
     {
-        public static void StartFight(IProfession p)
+        public static void StartFight(IProfession p, int roundWon)
         {
-            var e = EnemyFactory.RandomEnemy();
+            var e = EnemyFactory.RandomEnemy(roundWon);
             var tick = 1;
             var rng = new Random();
             var dmg = 0;

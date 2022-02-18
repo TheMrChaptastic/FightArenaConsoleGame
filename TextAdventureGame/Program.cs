@@ -17,7 +17,7 @@ namespace TextAdventureGame
             var uinput = Console.ReadLine();
             while (!gameover)
             {
-                if (fightsWon >= 3)
+                if (fightsWon == 3)
                 {
                     Console.WriteLine("You have succeeded! Congratulations!");
                     gameover = true;
@@ -34,7 +34,7 @@ namespace TextAdventureGame
                         Heal.HealPlayer(player);
                         break;
                     case "fight":
-                        Fight.StartFight(player);
+                        Fight.StartFight(player, fightsWon);
                         break;
                     default:
                         Console.WriteLine("Invalid Input.");
@@ -43,6 +43,11 @@ namespace TextAdventureGame
 
                 if (player.HP <= 0)
                 {
+                    Console.WriteLine("RIP (Hit Enter)");
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.ReadLine();
+                    Console.Clear();
                     Console.WriteLine("You have died in combat. Game Over.");
                     gameover = true;
                 }
@@ -61,6 +66,7 @@ namespace TextAdventureGame
                     gameover = uinput.ToLower() == "y" ? false : true;
                     if (!gameover)
                     {
+                        Console.ResetColor();
                         Console.Clear();
                         player = ClassFactory.ChooseClass();
                         Console.WriteLine();
@@ -68,6 +74,8 @@ namespace TextAdventureGame
                     }
                 }
             }
+            Console.WriteLine($"{player.Class} {username} Score: {player.HP + player.Gold * 3}");
+            HighScore.HighScoreCheck(player, username);
         }
     }
 }

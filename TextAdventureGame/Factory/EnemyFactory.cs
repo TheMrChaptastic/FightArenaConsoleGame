@@ -6,11 +6,20 @@ namespace TextAdventureGame
 {
     public class EnemyFactory
     {
-        public static IEnemy RandomEnemy()
+        public static IEnemy RandomEnemy(int roundWon)
         {
             Random r = new Random();
-            var rng = r.Next(10);
-            if (rng < 4)
+            int rng;
+            if (roundWon == 0)
+            {
+                rng = r.Next(8);
+            }
+            else
+            {
+                rng = r.Next(10);
+            }
+
+            if (rng < 5)
             {
                 Console.WriteLine("A green goblin runs into the Arena. Prepare for battle. (hit enter)");
                 Console.ReadLine();
