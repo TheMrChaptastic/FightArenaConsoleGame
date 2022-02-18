@@ -33,5 +33,12 @@ namespace TextAdventureGame
             Console.WriteLine("What is your name?");
             return Console.ReadLine();
         }
+
+        public static string UserInputThenClear()
+        {
+            var uinput = Console.ReadLine();
+            Console.Clear();
+            return uinput;
+        }
     }
 }

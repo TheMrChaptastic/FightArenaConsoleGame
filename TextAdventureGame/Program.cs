@@ -14,21 +14,13 @@ namespace TextAdventureGame
             Console.WriteLine();
             var fightsWon = 0;
             Console.WriteLine($"Hello {player.Class} {username}. You will now face 3 opponents.\nYou will be the victor or perish.\nHit Enter to continue.");
-            var uinput = Console.ReadLine();
+            var uInput = Game.UserInputThenClear();
             while (!gameover)
             {
-                if (fightsWon == 3)
-                {
-                    Console.WriteLine("You have succeeded! Congratulations!");
-                    gameover = true;
-                    break;
-                }
                 Console.WriteLine($"{username}\nHP: {player.HP} / {player.MaxHP}\nGold: {player.Gold}");
-
                 Console.WriteLine("Choose Option: Fight / Heal (2hp per gold)");
-                uinput = Console.ReadLine();
-                Console.Clear();
-                switch (uinput.ToLower())
+                uInput = Game.UserInputThenClear();
+                switch (uInput.ToLower())
                 {
                     case "heal":
                         Heal.HealPlayer(player);
@@ -46,12 +38,11 @@ namespace TextAdventureGame
                     Console.WriteLine("RIP (Hit Enter)");
                     Console.BackgroundColor = ConsoleColor.Red;
                     Console.ForegroundColor = ConsoleColor.Black;
-                    Console.ReadLine();
-                    Console.Clear();
+                    Game.UserInputThenClear();
                     Console.WriteLine("You have died in combat. Game Over.");
                     gameover = true;
                 }
-                else if (uinput.ToLower() == "fight")
+                else if (uInput.ToLower() == "fight")
                 {
                     fightsWon++;
                     var winStr = fightsWon == 3 ? "You have finished your last fight. Your legend will live on forever." : "You have won your fight.";
@@ -59,11 +50,17 @@ namespace TextAdventureGame
                     Console.WriteLine();
                 }
 
+                if (fightsWon == 3)
+                {
+                    Console.WriteLine("You have succeeded! Congratulations!\n");
+                    Console.WriteLine($"{player.Class} {username} Score: {player.HP + player.Gold * 3}\n");
+                    gameover = true;
+                }
                 if (gameover)
                 {
                     Console.WriteLine("Play Again? y/n");
-                    uinput = Console.ReadLine();
-                    gameover = uinput.ToLower() == "y" ? false : true;
+                    uInput = Console.ReadLine();
+                    gameover = uInput.ToLower() == "y" ? false : true;
                     if (!gameover)
                     {
                         Console.ResetColor();
@@ -74,7 +71,6 @@ namespace TextAdventureGame
                     }
                 }
             }
-            Console.WriteLine($"{player.Class} {username} Score: {player.HP + player.Gold * 3}");
         }
     }
 }

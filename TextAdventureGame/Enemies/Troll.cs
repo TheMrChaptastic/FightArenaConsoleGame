@@ -8,8 +8,8 @@ namespace TextAdventureGame
     {
         public string Name { get; set; } = "Troll";
         public int HP { get; set; } = 30;
-        public int Attack { get; set; } = 9;
-        public int Speed { get; set; } = 5;
+        public int Attack { get; set; } = 10;
+        public int Speed { get; set; } = 6;
         public int Gold { get; set; } = 6;
     }
 }

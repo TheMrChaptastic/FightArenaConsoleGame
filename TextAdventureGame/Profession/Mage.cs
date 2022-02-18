@@ -10,7 +10,8 @@ namespace TextAdventureGame
         public int MaxHP { get; set; } = 30;
         public int HP { get; set; } = 30;
         public int Attack { get; set; } = 15;
-        public int Speed { get; set; } = 6;
+        public int Armor { get; set; } = 0;
+        public int Speed { get; set; } = 5;
         public int Gold { get; set; } = 6;
     }
 }
